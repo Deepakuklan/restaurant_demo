@@ -63,8 +63,8 @@ class MenuScreen extends GetView<RestaurantMenuController> {
                 padding: const EdgeInsets.all(12.0),
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
-                    crossAxisSpacing: 8,
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 5,
                     mainAxisSpacing: 8,
                     childAspectRatio: 1.5,
                   ),
@@ -85,6 +85,7 @@ class MenuScreen extends GetView<RestaurantMenuController> {
                 top: false,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
                       flex: 2,
@@ -109,6 +110,7 @@ class MenuScreen extends GetView<RestaurantMenuController> {
                           fontWeight: FontWeight.bold,
                         ),
                         overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
                       ),
                     ),
                     const SizedBox(width: 8),
@@ -138,6 +140,7 @@ class MenuScreen extends GetView<RestaurantMenuController> {
     return InkWell(
       onTap: () => controller.selectMenu(menu),
       child: Container(
+        padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: controller.getMenuColor(menu.colorMenu),
           borderRadius: BorderRadius.circular(8),
