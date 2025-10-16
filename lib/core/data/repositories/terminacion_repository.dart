@@ -1,13 +1,14 @@
 import '../models/terminacion_model.dart';
-import '../services/database_service.dart';
+import '../services/sqlite_database_service.dart';
 
 class TerminacionRepository {
-  final DatabaseService _dbService = DatabaseService();
+  final SQLiteDatabaseService _dbService = SQLiteDatabaseService();
 
   Future<List<TerminacionModel>> getAllTerminaciones() async {
     try {
-      final sql = 'SELECT * FROM dbo.TERMINACION_PRODUCTOS';
-      final result = await _dbService.query(sql);
+      final result = await _dbService.query(
+        "SELECT * FROM TERMINACION_PRODUCTOS"
+      );
       return result.map((json) => TerminacionModel.fromJson(json)).toList();
     } catch (e) {
       print('Get all terminaciones error: $e');

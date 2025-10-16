@@ -1,13 +1,14 @@
 import '../models/menu_model.dart';
-import '../services/database_service.dart';
+import '../services/sqlite_database_service.dart';
 
 class MenuRepository {
-  final DatabaseService _dbService = DatabaseService();
+  final SQLiteDatabaseService _dbService = SQLiteDatabaseService();
 
   Future<List<MenuModel>> getAllMenus() async {
     try {
-      final sql = 'SELECT * FROM dbo.MENU';
-      final result = await _dbService.query(sql);
+      final result = await _dbService.query(
+        "SELECT * FROM MENU"
+      );
       return result.map((json) => MenuModel.fromJson(json)).toList();
     } catch (e) {
       print('Get all menus error: $e');

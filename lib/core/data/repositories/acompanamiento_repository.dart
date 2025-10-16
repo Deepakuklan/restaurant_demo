@@ -1,13 +1,14 @@
 import '../models/acompanamiento_model.dart';
-import '../services/database_service.dart';
+import '../services/sqlite_database_service.dart';
 
 class AcompanamientoRepository {
-  final DatabaseService _dbService = DatabaseService();
+  final SQLiteDatabaseService _dbService = SQLiteDatabaseService();
 
   Future<List<AcompanamientoModel>> getAllAcompanamientos() async {
     try {
-      final sql = 'SELECT * FROM dbo.Acompanamientos';
-      final result = await _dbService.query(sql);
+      final result = await _dbService.query(
+        "SELECT * FROM Acompanamientos"
+      );
       return result.map((json) => AcompanamientoModel.fromJson(json)).toList();
     } catch (e) {
       print('Get all acompanamientos error: $e');

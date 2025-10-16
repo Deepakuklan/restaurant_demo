@@ -1,16 +1,15 @@
 import '../models/producto_model.dart';
-import '../services/database_service.dart';
+import '../services/sqlite_database_service.dart';
 
 class ProductoRepository {
-  final DatabaseService _dbService = DatabaseService();
+  final SQLiteDatabaseService _dbService = SQLiteDatabaseService();
 
   Future<List<ProductoModel>> getProductsByMenu(String codigoMenu) async {
     try {
-      final sql = '''
-        SELECT * FROM dbo.PRODUCTOS 
-        WHERE Codigo_Menu = '$codigoMenu'
-      ''';
-      final result = await _dbService.query(sql);
+      final result = await _dbService.query(
+        "SELECT * FROM PRODUCTOS WHERE Codigo_Menu = ?",
+        [codigoMenu]
+      );
       return result.map((json) => ProductoModel.fromJson(json)).toList();
     } catch (e) {
       print('Get products by menu error: $e');

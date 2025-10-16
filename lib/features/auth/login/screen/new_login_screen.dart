@@ -141,17 +141,6 @@ class NewLoginScreen extends GetView<NewLoginController> {
                       onClear: controller.onClear,
                       onBackspace: controller.onBackspace,
                     ),
-                    const SizedBox(height: 20),
-                    
-                    // Settings button
-                    IconButton(
-                      onPressed: controller.openSettings,
-                      icon: const Icon(
-                        Icons.settings,
-                        size: 40,
-                        color: Colors.white,
-                      ),
-                    ),
                   ],
                 ),
               ),

@@ -26,6 +26,9 @@ class UsuarioModel {
     );
   }
 
+  // Alias for fromJson to work with SQLite
+  factory UsuarioModel.fromMap(Map<String, dynamic> map) => UsuarioModel.fromJson(map);
+
   Map<String, dynamic> toJson() {
     return {
       'Codigo_Acceso': codigoAcceso,

@@ -2,36 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/data/repositories/usuario_repository.dart';
-import '../../../../core/data/services/database_config.dart';
-import '../../../../core/data/services/database_service.dart';
 import '../../../../core/routes/app_routes.dart';
 
 class NewLoginController extends GetxController {
   final UsuarioRepository _usuarioRepo = UsuarioRepository();
-  final DatabaseService _dbService = DatabaseService();
   
   final password = ''.obs;
   final isLoading = false.obs;
   
   String? currentWaiterCode;
   String? currentWaiterName;
-
-  @override
-  void onInit() {
-    super.onInit();
-    _initializeDatabase();
-  }
-
-  Future<void> _initializeDatabase() async {
-    try {
-      final config = await DatabaseConfig.load();
-      if (config.database.isNotEmpty) {
-        await _dbService.initialize(config);
-      }
-    } catch (e) {
-      print('Error initializing database: $e');
-    }
-  }
 
   void onNumberPressed(String number) {
     if (password.value.length < 10) {
@@ -110,9 +90,5 @@ class NewLoginController extends GetxController {
     } finally {
       isLoading.value = false;
     }
-  }
-
-  void openSettings() {
-    Get.toNamed(AppRoutes.settings);
   }
 }
