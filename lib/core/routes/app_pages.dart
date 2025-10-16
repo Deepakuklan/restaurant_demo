@@ -1,0 +1,71 @@
+import 'package:get/get.dart';
+
+import '../../features/auth/login/binding/new_login_binding.dart';
+import '../../features/auth/login/screen/new_login_screen.dart';
+import '../../features/settings/binding/settings_binding.dart';
+import '../../features/settings/screen/settings_screen.dart';
+import '../../features/sections/binding/sections_binding.dart';
+import '../../features/sections/screen/sections_screen.dart';
+import '../../features/tables/binding/tables_binding.dart';
+import '../../features/tables/screen/tables_screen.dart';
+import '../../features/menu/binding/menu_binding.dart';
+import '../../features/menu/screen/menu_screen.dart';
+import '../../features/products/binding/products_binding.dart';
+import '../../features/products/screen/products_screen.dart';
+import '../../features/quantity/binding/quantity_binding.dart';
+import '../../features/quantity/screen/quantity_screen.dart';
+import '../../features/terms/binding/terms_binding.dart';
+import '../../features/terms/screen/terms_screen.dart';
+import '../../features/notes/binding/notes_binding.dart';
+import '../../features/notes/screen/notes_screen.dart';
+import 'app_routes.dart';
+
+class AppPages {
+  static final pages = [
+    GetPage(
+      name: AppRoutes.login,
+      page: () => const NewLoginScreen(),
+      binding: NewLoginBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.settings,
+      page: () => const SettingsScreen(),
+      binding: SettingsBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.sections,
+      page: () => const SectionsScreen(),
+      binding: SectionsBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.tables,
+      page: () => const TablesScreen(),
+      binding: TablesBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.menu,
+      page: () => const MenuScreen(),
+      binding: MenuBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.products,
+      page: () => const ProductsScreen(),
+      binding: ProductsBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.quantity,
+      page: () => const QuantityScreen(),
+      binding: QuantityBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.terms,
+      page: () => const TermsScreen(),
+      binding: TermsBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.notes,
+      page: () => const NotesScreen(),
+      binding: NotesBinding(),
+    ),
+  ];
+}
