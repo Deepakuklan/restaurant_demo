@@ -191,12 +191,53 @@ class SQLiteDatabaseService {
       await db.insert('SECCIONES', section);
     }
 
-    // Insert sample tables
+    // Insert sample tables for all sections
+    // SALON (S001) - Tables M1 to M12
     for (int i = 1; i <= 12; i++) {
       await db.insert('MESAS', {
         'Codigo': 'M$i',
         'Codigo_Zona': 'S001',
         'Descripcion_MESA': 'Mesa $i',
+        'Activa': 1,
+      });
+    }
+    
+    // TERRAZA (S002) - Tables T1 to T10
+    for (int i = 1; i <= 10; i++) {
+      await db.insert('MESAS', {
+        'Codigo': 'T$i',
+        'Codigo_Zona': 'S002',
+        'Descripcion_MESA': 'Terraza $i',
+        'Activa': 1,
+      });
+    }
+    
+    // BAR (S003) - Tables B1 to B8
+    for (int i = 1; i <= 8; i++) {
+      await db.insert('MESAS', {
+        'Codigo': 'B$i',
+        'Codigo_Zona': 'S003',
+        'Descripcion_MESA': 'Bar $i',
+        'Activa': 1,
+      });
+    }
+    
+    // BALCON (S004) - Tables BL1 to BL6
+    for (int i = 1; i <= 6; i++) {
+      await db.insert('MESAS', {
+        'Codigo': 'BL$i',
+        'Codigo_Zona': 'S004',
+        'Descripcion_MESA': 'Balcón $i',
+        'Activa': 1,
+      });
+    }
+    
+    // PISCINA (S005) - Tables P1 to P8
+    for (int i = 1; i <= 8; i++) {
+      await db.insert('MESAS', {
+        'Codigo': 'P$i',
+        'Codigo_Zona': 'S005',
+        'Descripcion_MESA': 'Piscina $i',
         'Activa': 1,
       });
     }

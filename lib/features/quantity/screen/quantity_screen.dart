@@ -12,7 +12,7 @@ class QuantityScreen extends GetView<QuantityController> {
     return Scaffold(
       backgroundColor: Colors.lightBlue[200],
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
@@ -22,16 +22,16 @@ class QuantityScreen extends GetView<QuantityController> {
                 children: [
                   Text(
                     AppStrings.appName.tr,
-                    style: TextStyle(
-                      fontSize: 32,
+                    style: const TextStyle(
+                      fontSize: 28,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 2,
                     ),
                   ),
                   const SizedBox(width: 8),
                   Container(
-                    width: 16,
-                    height: 16,
+                    width: 14,
+                    height: 14,
                     decoration: const BoxDecoration(
                       color: Colors.orange,
                       shape: BoxShape.circle,
@@ -39,11 +39,10 @@ class QuantityScreen extends GetView<QuantityController> {
                   ),
                 ],
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
               
               // Main card
-              Expanded(
-                child: Container(
+              Container(
                   width: double.infinity,
                   constraints: const BoxConstraints(maxWidth: 400),
                   padding: const EdgeInsets.all(24),
@@ -157,7 +156,7 @@ class QuantityScreen extends GetView<QuantityController> {
                     ],
                   ),
                 ),
-              ),
+              const SizedBox(height: 20),
             ],
           ),
         ),
