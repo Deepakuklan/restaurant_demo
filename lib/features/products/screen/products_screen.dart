@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../core/constants/app_strings.dart';
 import '../controller/products_controller.dart';
 
 class ProductsScreen extends GetView<ProductsController> {
-  const ProductsScreen({Key? key}) : super(key: key);
+  const ProductsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,31 +15,28 @@ class ProductsScreen extends GetView<ProductsController> {
         title: Text(controller.currentMenu.nombreMenu),
         backgroundColor: Colors.grey[700],
       ),
-      body: Obx(() {
-        if (controller.isLoading.value) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
+      body: SafeArea(
+        child: Obx(() {
+          if (controller.isLoading.value) {
+            return const Center(child: CircularProgressIndicator());
+          }
 
-        if (controller.products.isEmpty) {
-          return Center(
-            child: Text(
-              AppStrings.noProductsMenu.tr,
-              style: TextStyle(fontSize: 18),
-            ),
-          );
-        }
+          if (controller.products.isEmpty) {
+            return Center(
+              child: Text(AppStrings.noProductsMenu.tr, style: TextStyle(fontSize: 18)),
+            );
+          }
 
-        return ListView.builder(
-          padding: const EdgeInsets.all(16),
-          itemCount: controller.products.length,
-          itemBuilder: (context, index) {
-            final product = controller.products[index];
-            return _buildProductCard(product);
-          },
-        );
-      }),
+          return ListView.builder(
+            padding: const EdgeInsets.all(16),
+            itemCount: controller.products.length,
+            itemBuilder: (context, index) {
+              final product = controller.products[index];
+              return _buildProductCard(product);
+            },
+          );
+        }),
+      ),
     );
   }
 
@@ -46,9 +44,7 @@ class ProductsScreen extends GetView<ProductsController> {
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
       elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
         onTap: () => controller.selectProduct(product),
         borderRadius: BorderRadius.circular(12),

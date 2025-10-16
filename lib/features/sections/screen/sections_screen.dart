@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../core/constants/app_strings.dart';
 import '../controller/sections_controller.dart';
 
 class SectionsScreen extends GetView<SectionsController> {
-  const SectionsScreen({Key? key}) : super(key: key);
+  const SectionsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,102 +14,90 @@ class SectionsScreen extends GetView<SectionsController> {
       appBar: AppBar(
         title: Text(AppStrings.sections.tr),
         backgroundColor: Colors.grey[900],
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: controller.loadSections,
-          ),
-        ],
+        actions: [IconButton(icon: const Icon(Icons.refresh), onPressed: controller.loadSections)],
       ),
-      body: Obx(() {
-        if (controller.isLoading.value) {
-          return const Center(
-            child: CircularProgressIndicator(color: Colors.white),
-          );
-        }
+      body: SafeArea(
+        child: Obx(() {
+          if (controller.isLoading.value) {
+            return const Center(child: CircularProgressIndicator(color: Colors.white));
+          }
 
-        if (controller.sections.isEmpty) {
-          return Center(
-            child: Text(
-              AppStrings.noActiveSections.tr,
-              style: TextStyle(color: Colors.white, fontSize: 18),
-            ),
-          );
-        }
+          if (controller.sections.isEmpty) {
+            return Center(
+              child: Text(
+                AppStrings.noActiveSections.tr,
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
+            );
+          }
 
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              // TANGO Logo at top
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      AppStrings.appName.tr,
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                // TANGO Logo at top
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        AppStrings.appName.tr,
+                        style: const TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          letterSpacing: 2,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      const Icon(Icons.circle, color: Colors.orange, size: 16),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
+
+                // SECCIONES header
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  decoration: BoxDecoration(
+                    color: Colors.orange[700],
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Center(
+                    child: Text(
+                      AppStrings.sections.tr,
                       style: const TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
                         color: Colors.white,
-                        letterSpacing: 2,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(width: 8),
-                    const Icon(
-                      Icons.circle,
-                      color: Colors.orange,
-                      size: 16,
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20),
-              
-              // SECCIONES header
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 12,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.orange[700],
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Center(
-                  child: Text(
-                    AppStrings.sections.tr,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              
-              // Sections grid
-              Expanded(
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 12,
-                    mainAxisSpacing: 12,
-                    childAspectRatio: 1.5,
+                const SizedBox(height: 20),
+
+                // Sections grid
+                Expanded(
+                  child: GridView.builder(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
+                      childAspectRatio: 1.5,
+                    ),
+                    itemCount: controller.sections.length,
+                    itemBuilder: (context, index) {
+                      final section = controller.sections[index];
+                      return _buildSectionCard(section);
+                    },
                   ),
-                  itemCount: controller.sections.length,
-                  itemBuilder: (context, index) {
-                    final section = controller.sections[index];
-                    return _buildSectionCard(section);
-                  },
                 ),
-              ),
-            ],
-          ),
-        );
-      }),
+              ],
+            ),
+          );
+        }),
+      ),
     );
   }
 
@@ -123,9 +112,9 @@ class SectionsScreen extends GetView<SectionsController> {
       Colors.purple[300]!,
       Colors.lightBlue[300]!,
     ];
-    
+
     final color = colors[section.codigo.hashCode % colors.length];
-    
+
     return InkWell(
       onTap: () => controller.selectSection(section),
       child: Container(
@@ -143,11 +132,7 @@ class SectionsScreen extends GetView<SectionsController> {
         child: Center(
           child: Text(
             section.nombre,
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
+            style: const TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
         ),

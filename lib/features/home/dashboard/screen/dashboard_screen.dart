@@ -18,7 +18,7 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Dashboard'.tr)),
-      body: Obx(() => _screens[controller.selectedIndex.value]),
+      body: SafeArea(child: Obx(() => _screens[controller.selectedIndex.value])),
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
           currentIndex: controller.selectedIndex.value,

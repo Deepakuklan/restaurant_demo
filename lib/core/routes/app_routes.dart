@@ -1,6 +1,7 @@
 class AppRoutes {
   static const String login = '/login';
   static const String settings = '/settings';
+  static const String databaseConnection = '/database-connection';
   static const String sections = '/sections';
   static const String tables = '/tables';
   static const String menu = '/menu';

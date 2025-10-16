@@ -18,6 +18,8 @@ import '../../features/terms/binding/terms_binding.dart';
 import '../../features/terms/screen/terms_screen.dart';
 import '../../features/notes/binding/notes_binding.dart';
 import '../../features/notes/screen/notes_screen.dart';
+import '../../features/database_connection/binding/database_connection_binding.dart';
+import '../../features/database_connection/screen/database_connection_screen.dart';
 import 'app_routes.dart';
 
 class AppPages {
@@ -31,6 +33,11 @@ class AppPages {
       name: AppRoutes.settings,
       page: () => const SettingsScreen(),
       binding: SettingsBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.databaseConnection,
+      page: () => const DatabaseConnectionScreen(),
+      binding: DatabaseConnectionBinding(),
     ),
     GetPage(
       name: AppRoutes.sections,
