@@ -102,9 +102,9 @@ class TermsController extends GetxController {
       arguments: {
         'product': currentProduct,
         'quantity': quantity,
-        'terminacion': selectedTerminacion.value?.nombre,
-        'acompanamiento': selectedAcompanamiento.value?.nombre,
-        'salsa': selectedSalsa.value?.nombre,
+        'terminacion': selectedTerminacion.value?.codigo,      // CODIGO not nombre
+        'acompanamiento': selectedAcompanamiento.value?.codigo, // CODIGO not nombre
+        'salsa': selectedSalsa.value?.codigo,                   // CODIGO not nombre
         'menu': currentMenu,
         'table': currentTable,
         'section': currentSection,

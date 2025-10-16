@@ -91,6 +91,7 @@ class NotesController extends GetxController {
         // Create new factura
         factura = FacturaEnEsperaModel(
           codigoVendedor: waiterCode ?? '',
+          usuario: waiterName,  // Add waiter name
           codigoMesa: currentTable.codigo,
           codigoZona: currentSection.codigo,
           estatus: 1, // Occupied
@@ -101,20 +102,35 @@ class NotesController extends GetxController {
         facturaId = factura.id!;
       }
 
-      // Create detalle
+      // Get sequence number for this order
+      final existingDetalles = await _facturaRepo.getFacturaDetalles(facturaId);
+      final secuencia = existingDetalles.length + 1;
+
+      // Calculate taxes
+      final precioVenta = currentProduct.precio;
+      final subtotal = precioVenta * quantity;
+      final montoItbis = precioVenta * 0.18;  // 18% ITBIS tax
+      final montoLey = precioVenta * 0.10;    // 10% LEY tax
+      final totalLinea = subtotal + (montoItbis * quantity) + (montoLey * quantity);
+
+      // Create detalle with all required fields
       final detalle = FacturaDetalleModel(
         facturaId: facturaId,
         codigoProducto: currentProduct.codigo,
         nombreProducto: currentProduct.nombre,
+        precioVenta: precioVenta,
         cantidad: quantity,
-        precio: currentProduct.precio,
-        subtotal: currentProduct.precio * quantity,
-        terminacion: terminacion,
-        acompanamiento: acompanamiento,
-        salsa: salsa,
-        nota: noteController.text.isEmpty ? null : noteController.text,
-        sillaComensal: int.tryParse(sillaComensal.value),
+        subtotal: subtotal,
+        montoItbis: montoItbis,
+        montoLey: montoLey,
+        totalLinea: totalLinea,
+        codigoTermino: terminacion,      // CODES not names
+        codigoCompanana: acompanamiento, // CODES not names
+        codigoSalsa: salsa,              // CODES not names
+        notaProducto: noteController.text.isEmpty ? null : noteController.text,
+        sillaOrdeno: int.tryParse(sillaComensal.value),
         cantidadVasos: int.tryParse(cantidadVasos.value),
+        secuenciaProducto: secuencia,
       );
 
       await _facturaRepo.addDetalleToFactura(detalle);
