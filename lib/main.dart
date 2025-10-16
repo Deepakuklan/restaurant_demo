@@ -9,16 +9,16 @@ import 'core/theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   // Load translations from JSON files
   final translations = await AppTranslations.loadTranslations();
-  
+
   runApp(MyApp(translations: translations));
 }
 
 class MyApp extends StatelessWidget {
   final Map<String, Map<String, String>> translations;
-  
+
   const MyApp({super.key, required this.translations});
 
   @override
@@ -29,7 +29,8 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return GetMaterialApp(
-          title: 'Restaurant Demo',
+          debugShowCheckedModeBanner: false,
+          title: 'Restaurant',
           theme: AppTheme.lightTheme,
           locale: const Locale('es', 'ES'),
           fallbackLocale: const Locale('en', 'US'),

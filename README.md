@@ -1,16 +1,46 @@
-# restaurant_demo
+```
+████████╗ █████╗ ███╗   ██╗ ██████╗  ██████╗ 
+╚══██╔══╝██╔══██╗████╗  ██║██╔════╝ ██╔═══██╗
+   ██║   ███████║██╔██╗ ██║██║  ███╗██║   ██║
+   ██║   ██╔══██║██║╚██╗██║██║   ██║██║   ██║
+   ██║   ██║  ██║██║ ╚████║╚██████╔╝╚██████╔╝
+   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝  ╚═════╝ 
+              Restaurant POS System
+```
 
-A new Flutter project.
+# TANGO Restaurant POS
 
-## Getting Started
+Modern point-of-sale system for restaurants.
 
-This project is a starting point for a Flutter application.
+## Quick Start
 
-A few resources to get you started if this is your first Flutter project:
+```bash
+flutter run
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+**Login:** 1234
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Features
+
+- 5 sections, 44 tables
+- 6 menu categories
+- Product customization (cooking, sides, sauces)
+- Automatic tax calculation (18% ITBIS + 10% LEY)
+- Works offline with SQLite
+
+## Documentation
+
+- `CLIENT_DEMO_GUIDE.md` - Client demo instructions
+- `DEMO_PRESENTATION.md` - Presentation deck
+- `COMPLETE_REQUIREMENTS_CHECKLIST.md` - Implementation checklist
+
+## Tech Stack
+
+- Flutter
+- GetX (state management)
+- SQLite (local database)
+- Spanish/English support
+
+---
+
+**Demo Version 1.0** • October 2025

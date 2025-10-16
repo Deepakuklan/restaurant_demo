@@ -1,0 +1,44 @@
+═══════════════════════════════════════════
+  TANGO POS - App Icon Setup (2 Minutes)
+═══════════════════════════════════════════
+
+STEP 1: Create Icon Image
+─────────────────────────
+• Size: 1024x1024 pixels (PNG)
+• Design: "TANGO" text + orange circle
+• Use: Canva, Figma, or any design tool
+• Save as: assets/images/app_icon.png
+
+STEP 2: Generate Icons
+───────────────────────
+Run this command:
+
+  ./generate_icons.sh
+
+OR manually:
+
+  flutter pub get
+  flutter pub run flutter_launcher_icons
+
+STEP 3: Test
+────────────
+  flutter clean
+  flutter run
+
+═══════════════════════════════════════════
+
+QUICK TIP: Don't have a design tool?
+• Use https://icon.kitchen/
+• Upload any image
+• Download as 1024x1024 PNG
+• Save to assets/images/app_icon.png
+
+═══════════════════════════════════════════
+
+CURRENT STATUS:
+✅ Configuration ready (pubspec.yaml)
+✅ Directory created (assets/images/)
+✅ Generator script ready
+⏳ Waiting for: app_icon.png file
+
+═══════════════════════════════════════════
