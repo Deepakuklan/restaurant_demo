@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
 
 import '../../features/auth/login/binding/new_login_binding.dart';
-import '../../features/auth/login/screen/new_login_screen.dart';
+import '../../features/auth/login/screen/premium_login_screen.dart';
 import '../../features/settings/binding/settings_binding.dart';
 import '../../features/settings/screen/settings_screen.dart';
 import '../../features/sections/binding/sections_binding.dart';
-import '../../features/sections/screen/sections_screen.dart';
+import '../../features/sections/screen/premium_sections_screen.dart';
 import '../../features/tables/binding/tables_binding.dart';
 import '../../features/tables/screen/tables_screen.dart';
 import '../../features/menu/binding/menu_binding.dart';
@@ -26,7 +26,7 @@ class AppPages {
   static final pages = [
     GetPage(
       name: AppRoutes.login,
-      page: () => const NewLoginScreen(),
+      page: () => const PremiumLoginScreen(),
       binding: NewLoginBinding(),
     ),
     GetPage(
@@ -41,7 +41,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.sections,
-      page: () => const SectionsScreen(),
+      page: () => const PremiumSectionsScreen(),
       binding: SectionsBinding(),
     ),
     GetPage(
